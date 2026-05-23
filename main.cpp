@@ -67,7 +67,6 @@ int main(int argc, char** argv){
 
     vector<Movie> bestMovies;
     vector<string> bestPrefixes;
-    bool lastHadMovies = false;
 
     for (int i = 0; i < (int)prefixes.size(); i++) {
         string prefix = prefixes[i];
@@ -89,7 +88,6 @@ int main(int argc, char** argv){
 
         if (matches.empty()) {
             cout << "No movies found with prefix " << prefix << endl;
-            lastHadMovies = false;
         } else {
             sort(matches.begin(), matches.end(), [](const Movie &a, const Movie &b) {
                 if (a.rating == b.rating) {
@@ -104,16 +102,8 @@ int main(int argc, char** argv){
 
             bestPrefixes.push_back(prefix);
             bestMovies.push_back(matches[0]);
-            lastHadMovies = true;
-        }
-
-        if (i != (int)prefixes.size() - 1) {
             cout << endl;
         }
-    }
-
-    if (lastHadMovies) {
-        cout << endl;
     }
 
     for (int i = 0; i < (int)bestMovies.size(); i++) {
